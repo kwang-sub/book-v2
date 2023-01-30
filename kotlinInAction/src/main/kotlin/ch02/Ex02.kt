@@ -22,4 +22,7 @@ fun main() {
 
     val rgb = Color.BLUE
     println(rgb.rgb())
+
+    val test = getMnemonic(Color.ORANGE)
+    println(test)
 }

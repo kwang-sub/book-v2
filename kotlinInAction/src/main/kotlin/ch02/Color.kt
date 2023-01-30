@@ -1,5 +1,7 @@
 package ch02
 
+import ch02.Color.*
+
 enum class Color (
     val r: Int, val g: Int, val b: Int
 ){
@@ -8,3 +10,13 @@ enum class Color (
 
     fun rgb() = (r * 256 + g) * 256 + b
 }
+
+fun getMnemonic(color: Color) =
+    when (color) {
+        RED, ORANGE -> "Richard"
+        YELLOW -> "York"
+        GREEN -> "Gave"
+        BLUE -> "Battle"
+        INDIGO -> "In"
+        VIOLET -> "Vain"
+    }
