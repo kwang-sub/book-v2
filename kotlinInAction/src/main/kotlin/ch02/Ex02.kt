@@ -25,4 +25,8 @@ fun main() {
 
     val test = getMnemonic(Color.ORANGE)
     println(test)
+
+    println(mix(Color.YELLOW, Color.RED))
+    println(mixOptimized(Color.YELLOW, Color.RED))
+
 }
