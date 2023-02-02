@@ -1,15 +1,19 @@
 package ch03
 
+const val CONST_TEST = "Test"
+
 fun main() {
     val list = listOf(1, 23, 4)
-    println(joinToString(list, separator = ",", postfix = "", prefix = "!"))
+    println(joinToString(list, separator = ", ", postfix = "!", prefix = ""))
+    println(joinToString(list))
+    println("sdd".lastChar())
 }
 
 fun <T> joinToString(
     collection: Collection<T>,
-    separator: String,
-    prefix: String,
-    postfix: String
+    separator: String = ", ",
+    prefix: String = "",
+    postfix: String = ""
 ): String {
     val result = StringBuilder(prefix)
 
@@ -20,3 +24,5 @@ fun <T> joinToString(
     result.append(postfix)
     return result.toString()
 }
+
+fun String.lastChar() : Char = this.get(this.length - 1)

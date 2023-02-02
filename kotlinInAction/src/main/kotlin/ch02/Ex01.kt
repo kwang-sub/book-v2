@@ -1,9 +1,14 @@
 package ch02
 
+import ch03.*
+
 fun main() {
 //    println("Hello, world!")
 //    println(max(1, 2))
-    print("test")
+    println(CONST_TEST)
+    println("test")
+    println(joinToString(listOf(1,2,3)))
+
 }
 
 
