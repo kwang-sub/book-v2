@@ -1,6 +1,6 @@
 package utill
 
-import strings.lastChar
+import ch03.lastChar
 
 
 fun main() {
