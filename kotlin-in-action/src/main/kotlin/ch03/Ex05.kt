@@ -13,6 +13,5 @@ fun main() {
 }
 
 fun test(vararg tt: String) {
-
     println(listOf(*tt))
 }
