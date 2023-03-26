@@ -8,6 +8,12 @@ fun main() {
 
     val names = people.joinToString(separator = " | ") { it.name }
     println(names)
+
+    val getAge = Person::age
+
+    println("==============")
+    println(people.maxBy(getAge))
+    println(people.maxBy { p -> p.age })
 }
 
 fun findTheOldest(people: List<Person>) {
