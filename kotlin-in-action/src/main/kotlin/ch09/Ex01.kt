@@ -1,7 +1,5 @@
 package ch09
 
-import com.sun.jdi.IntegerValue
-
 fun main() {
     val letters = ('a'..'z').toList()
     println(letters.slice<Char>(0..2))
@@ -14,6 +12,10 @@ fun main() {
     println(oneHalf('a'.code))
 
     println(max("kwang", "sub"))
+
+    val helloWorld = StringBuilder("Hello World")
+    ensureTrailingPeriod(helloWorld)
+    println(helloWorld)
 }
 
 val <T> List<T>.penultimate: T
@@ -25,4 +27,10 @@ fun <T : Number> oneHalf(value: T): Double {
 
 fun <T : Comparable<T>> max(first: T, second: T): T {
     return if (first > second) first else second
+}
+
+fun <T> ensureTrailingPeriod(seq: T) where T : CharSequence, T : Appendable {
+    if (!seq.endsWith('.')) {
+        seq.append('.')
+    }
 }
