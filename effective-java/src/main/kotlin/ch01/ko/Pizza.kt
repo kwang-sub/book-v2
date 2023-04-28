@@ -25,4 +25,8 @@ abstract class Pizza {
 
         abstract fun build(): Pizza
     }
+
+    override fun toString(): String {
+        return "Pizza(toppingList=$toppingList)"
+    }
 }

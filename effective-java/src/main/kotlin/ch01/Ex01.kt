@@ -5,7 +5,10 @@ import ch01.ja.NutritionFactsJava
 import ch01.ja.NyPizzaJavaJava
 import ch01.ja.PizzaJava
 import ch01.ko.NutritionFacts
+import ch01.ko.NyPizza
 import ch01.ko.Person
+import ch01.ko.Size
+import ch01.ko.Topping
 
 fun main() {
     val person = Person.create("kwang", 30, "Student")
@@ -35,6 +38,14 @@ fun main() {
         .build()
     println("java calzone $calzoneJava")
     println("java nyPizza $nyPizzaJava")
+
+    println("================")
+
+    val nyPizza = NyPizza.Builder()
+        .setSize(Size.LARGE)
+        .addTopping(Topping.HAM)
+        .build()
+    println(nyPizza)
 
 
 }
