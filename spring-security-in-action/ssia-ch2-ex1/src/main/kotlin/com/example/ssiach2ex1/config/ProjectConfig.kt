@@ -2,10 +2,7 @@ package com.example.ssiach2ex1.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.security.config.Customizer
-import org.springframework.security.config.Customizer.withDefaults
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer.AuthorizationManagerRequestMatcherRegistry
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -16,10 +13,10 @@ import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
 class ProjectConfig {
-    @Bean
+//    @Bean
     fun userDetailsService(): UserDetailsService {
-        var userDetailsService = InMemoryUserDetailsManager()
-        var user = User.withUsername("kwang")
+        val userDetailsService = InMemoryUserDetailsManager()
+        val user = User.withUsername("kwang")
             .password(passwordEncoder().encode("12345"))
             .authorities("read")
             .build()
@@ -35,9 +32,18 @@ class ProjectConfig {
 
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain? {
+        val inMemoryUserDetailsManager = InMemoryUserDetailsManager()
+        val user = User.withUsername("kwang")
+            .password(passwordEncoder().encode("12345"))
+            .authorities("read")
+            .build()
+        inMemoryUserDetailsManager.createUser(user)
+        http.userDetailsService(inMemoryUserDetailsManager)
+
         http.httpBasic()
         http.authorizeHttpRequests()
-            .anyRequest().permitAll()
+            .anyRequest().authenticated()
+
         return http.build()
     }
 }
