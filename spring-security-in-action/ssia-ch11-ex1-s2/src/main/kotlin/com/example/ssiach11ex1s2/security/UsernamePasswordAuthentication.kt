@@ -12,7 +12,7 @@ class UsernamePasswordAuthentication : UsernamePasswordAuthenticationToken  {
 
     constructor(
         principal: Any,
-        credentials: Any,
+        credentials: Any?,
         authorities: Collection<out GrantedAuthority>
     ) : super(principal, credentials, authorities)
 }
