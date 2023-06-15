@@ -15,7 +15,7 @@ data class Answer(
 
     fun match(expected: Int) = i?.let { question?.match(expected, it) }
 
-    fun match(otherAnswer: Answer) = i?.let { otherAnswer.i?.let { it1 -> question?.match(it, it1) } }
+    fun match(otherAnswer: Answer) = i?.let { otherAnswer.i?.let { it1 -> question?.match(it, it1) } } == true
 
     fun getCharacteristic() = question
 }
