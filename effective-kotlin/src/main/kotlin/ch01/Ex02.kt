@@ -18,13 +18,24 @@ fun main() {
     println(fizz)
     println(buzz)
     println(buzz)
+    println()
+
+    if (fullName != null)
+//        println(fullName.length)
+
+    if (fullName2 != null)
+        println(fullName2.length)
+
+
 }
 
-var name: String = "Marcin"
+var name: String? = "Marcin"
 var surname: String = "Moskala"
 
-val fullName: String
-    get() = "$name $surname"
+val fullName: String?
+    get() = name?.let { "$it $surname" }
+
+val fullName2: String? = name?.let { "$it $surname" }
 
 fun calculate(): Int {
     println("Calculating...")
