@@ -1,4 +1,4 @@
-package ch01
+package item01
 
 /**
  * val를 var로 오버라이딩 가능

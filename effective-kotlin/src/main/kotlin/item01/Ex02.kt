@@ -1,4 +1,4 @@
-package ch01
+package item01
 
 fun main() {
     val a = 10

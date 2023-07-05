@@ -1,4 +1,4 @@
-package ch01
+package item01
 
 class BankAccount {
     var balance = 0.0

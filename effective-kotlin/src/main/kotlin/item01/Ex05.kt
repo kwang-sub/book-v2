@@ -1,4 +1,4 @@
-package ch01
+package item01
 
 import kotlin.concurrent.thread
 import kotlin.properties.Delegates

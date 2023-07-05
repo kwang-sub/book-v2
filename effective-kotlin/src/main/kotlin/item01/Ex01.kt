@@ -1,4 +1,4 @@
-package ch01
+package item01
 
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
