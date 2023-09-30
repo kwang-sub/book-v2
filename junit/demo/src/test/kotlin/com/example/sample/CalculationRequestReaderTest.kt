@@ -19,6 +19,5 @@ class CalculationRequestReaderTest{
         assertEquals(2, result.num1)
         assertEquals("+", result.operator)
         assertEquals(3, result.num2)
-
     }
 }
