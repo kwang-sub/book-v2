@@ -1,9 +1,8 @@
-package modernjavainaction.study
+package modernjavainaction.study.ch02
 
 import modernjavainaction.base.chap02.FilteringApples
 import modernjavainaction.base.chap02.FilteringApples.Apple
 import modernjavainaction.base.chap02.FilteringApples.Color
-import modernjavainaction.study.ch02.*
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 
