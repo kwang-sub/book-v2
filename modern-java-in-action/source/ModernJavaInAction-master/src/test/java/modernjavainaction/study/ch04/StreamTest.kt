@@ -2,6 +2,8 @@ package modernjavainaction.study.ch04
 
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
+import java.util.stream.Collector
+import java.util.stream.Collectors
 
 class StreamTest {
     @Test
@@ -25,4 +27,28 @@ class StreamTest {
         assertThat(result).containsAll(listOf("pork", "beef", "chicken"))
     }
 
+    @Test
+    fun 퀴즈_4_1() {
+        val highCaloricDishes = menu.filter { it.calories > 300 }
+            .toList()
+
+        assertThat(highCaloricDishes).allMatch { it.calories > 300 }
+    }
+
+    @Test
+    fun 중간연산() {
+        val names = menu.stream()
+            .filter {
+                println("filtering ${it.name}")
+                it.calories > 300
+            }
+            .map {
+                println("mapping ${it.name}")
+                it.name
+            }
+            .limit(3)
+            .collect(Collectors.toList())
+
+        assertThat(names).containsAll(listOf("pork", "beef", "chicken"))
+    }
 }
