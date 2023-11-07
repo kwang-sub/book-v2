@@ -1,12 +1,26 @@
 package modernjavainaction.study.ch05
 
 import modernjavainaction.base.chap04.Dish
+import modernjavainaction.base.chap05.Trader
+import modernjavainaction.base.chap05.Transaction
 import modernjavainaction.study.ch04.menu
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import javax.print.attribute.IntegerSyntax
 
 class StreamTest {
+    var raoul = Trader("Raoul", "Cambridge")
+    var mario = Trader("Mario", "Milan")
+    var alan = Trader("Alan", "Cambridge")
+    var brian = Trader("Brian", "Cambridge")
+    val transactions = listOf(
+        Transaction(brian, 2011, 300),
+        Transaction(raoul, 2012, 1000),
+        Transaction(raoul, 2011, 400),
+        Transaction(mario, 2012, 710),
+        Transaction(mario, 2012, 700),
+        Transaction(alan, 2012, 950)
+    )
+
 
     @Test
     fun 중복제거() {
@@ -129,4 +143,68 @@ class StreamTest {
         val count = menu.map { 1 }.reduce(Integer::sum)
         assertThat(count).isEqualTo(menu.size)
     }
+
+    @Test
+    fun 퀴즈_2011년_트랜잭션_값_오름차순() {
+        val result = transactions.filter { it.year == 2011 }
+            .map { it.value }
+            .sortedBy { it }
+            .toList()
+
+        assertThat(result).isEqualTo(listOf(300, 400))
+        assertThat(result[0]).isEqualTo(result.min())
+    }
+
+    @Test
+    fun 퀴즈_도시_중복제거() {
+        val result = transactions.map { it.trader.city }
+            .distinct()
+
+        assertThat(result).isEqualTo(listOf("Cambridge", "Milan"))
+    }
+
+    @Test
+    fun 케임브리지_근무자_이름순_정렬() {
+        val result = transactions.map { it.trader }
+            .filter { it.city == "Cambridge" }
+            .sortedBy { it.name }
+
+        assertThat(result).allMatch { it.city == "Cambridge" }
+        assertThat(result.first().name).isEqualTo("Alan")
+    }
+
+    @Test
+    fun 거래자_이름_정령() {
+        val result = transactions.map { it.trader.name }
+            .distinct()
+            .sortedBy { it }
+        assertThat(result).isEqualTo(listOf("Alan", "Brian", "Mario", "Raoul"))
+        assertThat(result.first()).isEqualTo("Alan")
+    }
+
+    @Test
+    fun 밀라노_거래자_유무() {
+        val result = transactions.any { it.trader.city == "Milan" }
+        assertThat(result).isTrue()
+    }
+
+    @Test
+    fun 케임브리지_거래자_트랜잭션값_출력() {
+        transactions.filter { it.trader.city == "Cambridge" }.forEach { println(it.value) }
+    }
+
+    @Test
+    fun 트랜잭션_최댓값() {
+        val result = transactions.maxOfOrNull { it.value }
+
+        assertThat(result).isEqualTo(1000)
+    }
+
+    @Test
+    fun 트랜잭션_최솟값() {
+        val result = transactions.minOfOrNull { it.value }
+
+        assertThat(result).isEqualTo(300)
+    }
+
 }
