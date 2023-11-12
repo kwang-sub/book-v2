@@ -4,9 +4,8 @@ import modernjavainaction.base.chap04.Dish
 import modernjavainaction.base.chap06.GroupingTransactions
 import modernjavainaction.study.ch04.menu
 import org.junit.jupiter.api.Test
-import java.util.Comparator
-import java.util.Optional
 import java.util.stream.Collectors
+import java.util.stream.IntStream
 
 class Test01 {
 
@@ -27,7 +26,12 @@ class Test01 {
 //            .forEach { println(it) }
 
         menu.stream()
-            .collect(Collectors.groupingBy(Dish::getType, Collectors.filtering({it.calories > 500}, Collectors.toList())))
+            .collect(
+                Collectors.groupingBy(
+                    Dish::getType,
+                    Collectors.filtering({ it.calories > 500 }, Collectors.toList())
+                )
+            )
             .forEach { println(it) }
     }
 
@@ -39,18 +43,46 @@ class Test01 {
 //            .forEach { println(it) }
 
         menu.groupBy { it.type }
-            .map { it.value.groupBy {
-                if (it.calories <= 400)
-                    return@groupBy "DIEF"
-                else if(it.calories <= 700)
-                    return@groupBy "NORMAL"
-                else return@groupBy "FAT"
-            } }
+            .map {
+                it.value.groupBy {
+                    if (it.calories <= 400)
+                        return@groupBy "DIEF"
+                    else if (it.calories <= 700)
+                        return@groupBy "NORMAL"
+                    else return@groupBy "FAT"
+                }
+            }
 //            .forEach { println(it) }
 
         menu.groupBy { it.type }
-            .map { it.key to it.value.maxBy { it.calories } }
-//            .forEach { println(it) }
+            .map { it.key to it.value.sumOf { it.calories } }
+            .forEach { println(it) }
 
+    }
+
+    @Test
+    fun 분할() {
+        menu.stream().collect(Collectors.partitioningBy(Dish::isVegetarian, Collectors.groupingBy { it.type }))
+            .forEach(System.out::println)
+        menu.partition { it.isVegetarian }
+            .let {
+                it.first.groupBy { it.type }.let { println(it) }
+                it.second.groupBy { it.type }.let { println(it) }
+
+                it.first.maxBy { it.calories }.let { println(it) }
+            }
+
+        IntRange(2, 10).partition { isPrime(it) }
+            .let { println(it) }
+
+        IntRange(2, 10).toList().stream().collect(PrimeNumbersCollector())
+            .let { println(it) }
+
+    }
+
+
+    fun isPrime(candidate: Int): Boolean {
+        return IntStream.range(2, candidate)
+            .noneMatch { candidate % it == 0 }
     }
 }
