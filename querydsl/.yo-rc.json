@@ -1,0 +1,59 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "querydsl",
+    "blueprints": [
+      {
+        "name": "generator-jhipster-kotlin",
+        "version": "1.16.0"
+      }
+    ],
+    "buildTool": "gradle",
+    "cacheProvider": "ehcache",
+    "clientFramework": "no",
+    "clientPackageManager": "npm",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1700722210580,
+    "databaseType": "sql",
+    "devDatabaseType": "mariadb",
+    "dtoSuffix": "DTO",
+    "enableGradleEnterprise": false,
+    "enableHibernateCache": true,
+    "enableSwaggerCodegen": true,
+    "enableTranslation": false,
+    "entitySuffix": "",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "7.9.3",
+    "jwtSecretKey": "NDc3OTBjZjFiNmNmZTUyNTJkZDQ0YzgzOGFhYTdlYmE5NTUwOWI3MDNlNzFmYmFiM2I5MDMzZjkwNDZjZjlhNjQ5ODc3MWVhMjhjMDQ3YWIzMDc0NmVjOTIyZjlmMWFmZDIzNGNkNDE4MDY4ZGQ3YTE4MmFkNDVmNWQ2Y2YxNGI=",
+    "languages": ["en", "fr"],
+    "messageBroker": false,
+    "microfrontend": false,
+    "microfrontends": [],
+    "monorepository": true,
+    "nativeLanguage": "ko",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-kotlin",
+        "version": "1.16.0"
+      }
+    ],
+    "packageName": "com.example.querydsl",
+    "pages": [],
+    "prodDatabaseType": "mariadb",
+    "reactive": false,
+    "searchEngine": false,
+    "serverPort": "8080",
+    "serverSideOptions": ["enableSwaggerCodegen:true"],
+    "serviceDiscoveryType": "no",
+    "skipCheckLengthOfIdentifier": false,
+    "skipClient": true,
+    "skipCommitHook": true,
+    "skipFakeData": false,
+    "skipUserManagement": false,
+    "testFrameworks": [],
+    "websocket": false,
+    "withAdminUi": true
+  }
+}
