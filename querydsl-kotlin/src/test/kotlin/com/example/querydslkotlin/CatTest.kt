@@ -50,4 +50,17 @@ class CatTest {
         val child = result.get()
         assertThat(child.name).isEqualTo("child")
     }
+
+    @Test
+    fun getCatName() {
+        val result = catQueryRepository.getCatName()
+        assertThat(result.size).isEqualTo(4)
+        assertThat(result).anyMatch { it == "child1" }
+    }
+
+    @Test
+    fun caseBuilder() {
+        val result = catQueryRepository.caseBuilder()
+        assertThat(result.filter { it == "old" }.size).isEqualTo(1)
+    }
 }

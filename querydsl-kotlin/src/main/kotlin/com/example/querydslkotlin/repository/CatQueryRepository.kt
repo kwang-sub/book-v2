@@ -2,6 +2,7 @@ package com.example.querydslkotlin.repository
 
 import com.example.querydslkotlin.domain.Cat
 import com.example.querydslkotlin.domain.QCat
+import com.querydsl.core.types.dsl.CaseBuilder
 import com.querydsl.jpa.JPAExpressions
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.stereotype.Repository
@@ -14,6 +15,7 @@ class CatQueryRepository(
 
     val qChildCat = QCat("qChildCat")
     val qParentCat = QCat("qParentCat")
+
 
     fun findByParentName(parentName: String): Optional<Cat> {
         val result = jpaQueryFactory.selectFrom(qChildCat)
@@ -35,6 +37,22 @@ class CatQueryRepository(
             .fetchOne()
 
         return Optional.ofNullable(result)
+    }
+
+    fun getCatName(): MutableList<String> {
+        return jpaQueryFactory.select(qChildCat.name)
+            .from(qChildCat)
+            .fetch()
+    }
+
+    fun caseBuilder(): MutableList<String> {
+        return jpaQueryFactory.select(
+            CaseBuilder()
+                .`when`(qChildCat.age.goe(12)).then("old")
+                .otherwise("young")
+        )
+            .from(qChildCat)
+            .fetch()
     }
 
 }
