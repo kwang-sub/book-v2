@@ -13,7 +13,7 @@ open class Team(
 
     ) {
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
     var members: MutableSet<Member> = mutableSetOf()
 
 

@@ -52,6 +52,10 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+allOpen {
+    annotation("jakarta.persistence.Entity")
+}
+
 // 생성 Q파일 경로 설정
 idea {
     module {
